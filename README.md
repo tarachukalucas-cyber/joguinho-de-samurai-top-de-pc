@@ -1,31 +1,31 @@
 # Caminhos do Vale — Godot 4.7
 
-Jogo original de exploração 3D em low-poly, com câmera em terceira pessoa. A proposta agora é explorar uma região ampla, encontrar locais antigos e descobrir a história de uma civilização desaparecida. É inspirado no gênero de aventura e exploração em mundo aberto, sem copiar personagens, mapas, máquinas ou história de Horizon.
+Aventura original de exploração em terceira pessoa, com direção visual 3D mais realista. O protagonista é um samurai viajante em um mundo de natureza, ruínas antigas e máquinas selvagens. É uma obra original inspirada no gênero de aventura de mundo aberto; não reproduz assets, personagens, cenas ou mapas de Horizon.
 
-## Como abrir
-1. No GitHub, clique em **Code > Download ZIP**.
-2. Extraia o ZIP em uma pasta.
-3. Abra o Godot 4.7 e importe o arquivo `project.godot`.
-4. Execute com F6 ou F5.
+## Abrir
+1. Clique em **Code > Download ZIP** e extraia.
+2. Abra o Godot 4.7.
+3. Importe `project.godot` e execute com F6/F5.
+4. O projeto usa Forward+ no PC para habilitar efeitos visuais avançados.
 
 ## Controles
-- WASD: movimentar
+- WASD: mover em relação à câmera
+- Mouse: câmera livre orbital em terceira pessoa
 - Shift: correr
 - Espaço: pular
-- Mouse: controlar a câmera
-- F: observar e registrar um marco antigo próximo
+- F: registrar um marco antigo próximo
 - E: conversar com o guia
-- Esc: liberar o mouse; botão direito captura novamente
+- Esc: liberar o cursor; clique direito captura novamente
 
-## O que já existe nesta versão
-- Região 3D low-poly ampla, com bosque, colinas e caminhos.
-- Quatro áreas de interesse: Bosque das Lanternas, Ruínas do Sol, Lago Espelhado e Torre do Vento.
-- Cristais luminosos que indicam pontos de exploração.
-- Criaturas mecânicas low-poly que circulam pelo ambiente como fauna do vale.
-- Personagem em terceira pessoa, corrida e salto.
-- Guia com diálogo e objetivo de exploração.
-- HUD com progresso dos locais descobertos.
-- Cenário e modelos simples gerados por código, sem baixar pacotes de assets.
+## Conteúdo implementado nesta etapa
+- Samurai viajante com armadura em camadas, capacete e katana.
+- Câmera livre de terceira pessoa com SpringArm e colisão.
+- Movimento relativo à câmera, corrida e salto.
+- Vale amplo com bosque, colinas, lago, ruínas e torre.
+- Criaturas mecânicas originais que patrulham áreas do mapa.
+- Quatro marcos de exploração e diálogos com guia.
+- Sequência inicial cinematográfica com câmera panorâmica e título.
+- Iluminação direcional, sombras, neblina, ambient occlusion, iluminação indireta, glow e tonemapping.
 
-## Estado do projeto
-Esta é uma primeira versão de exploração. Ainda não possui a escala, animações, criaturas mecânicas complexas ou sistemas de escalada de um jogo comercial. O projeto foi atualizado no GitHub, mas não foi executado na engine nesta sessão; portanto, ainda precisa de teste no Godot 4.7.
+## Limitações
+Esta é uma base de protótipo. Os modelos são gerados por formas procedurais e ainda não equivalem a modelos realistas de produção AAA. Não há animações capturadas, cutscenes narrativas completas, mundo da escala de um jogo comercial, máquinas complexas ou dublagem. A atualização ainda precisa ser aberta e testada no Godot 4.7; não foi possível validar a execução na engine nesta sessão.
