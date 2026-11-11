@@ -17,7 +17,7 @@ func _ready() -> void:
     Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _input_setup() -> void:
-    var keys := {"move_forward":KEY_W,"move_back":KEY_S,"move_left":KEY_A,"move_right":KEY_D,"sprint":KEY_SHIFT,"jump":KEY_SPACE,"attack":KEY_J}
+    var keys := {"move_forward":KEY_W,"move_back":KEY_S,"move_left":KEY_A,"move_right":KEY_D,"sprint":KEY_SHIFT,"jump":KEY_SPACE,"attack":KEY_J,"interact":KEY_E,"explore":KEY_F}
     for action in keys:
         if not InputMap.has_action(action):
             InputMap.add_action(action)
