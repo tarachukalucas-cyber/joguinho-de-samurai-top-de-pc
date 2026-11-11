@@ -94,7 +94,7 @@ func _environment() -> void:
 func _height(x: float, z: float) -> float:
     var edge := maxf(absf(x),absf(z))
     var ridge := pow(clampf((edge-68.0)/48.0,0.0,1.0),1.6)*12.0
-    return -1.2 + ridge + sin(x*0.045)*0.8 + cos(z*0.052)*0.7 + sin((x+z)*0.025)*0.9
+    return 0.0 + ridge + sin(x*0.045)*0.8 + cos(z*0.052)*0.7 + sin((x+z)*0.025)*0.9
 
 func _terrain() -> void:
     var verts := PackedVector3Array()
@@ -221,7 +221,7 @@ func _flowers() -> void:
 func _village(p: Vector3) -> void:
     for i in range(4):
         var x := p.x + float(i%2)*13.0-7.0
-        var z := p.z + float(i/2)*10.0-5.0
+        var z := p.z + floori(float(i)/2.0)*10.0-5.0
         _house(Vector3(x,p.y,z),i==0)
     for i in range(6):
         box(self,p+Vector3(-13+i*5,0.8,-13),Vector3(0.22,1.6,0.22),Color(0.32,0.22,0.14))
