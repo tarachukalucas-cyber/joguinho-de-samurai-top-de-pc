@@ -21,6 +21,7 @@ Jogo original de exploração 3D em low-poly, com câmera em terceira pessoa. A 
 - Região 3D low-poly ampla, com bosque, colinas e caminhos.
 - Quatro áreas de interesse: Bosque das Lanternas, Ruínas do Sol, Lago Espelhado e Torre do Vento.
 - Cristais luminosos que indicam pontos de exploração.
+- Criaturas mecânicas low-poly que circulam pelo ambiente como fauna do vale.
 - Personagem em terceira pessoa, corrida e salto.
 - Guia com diálogo e objetivo de exploração.
 - HUD com progresso dos locais descobertos.
