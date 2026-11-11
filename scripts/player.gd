@@ -94,7 +94,7 @@ func _build_model() -> void:
     spring_arm.position = Vector3(0,0.35,0)
     camera_pivot.add_child(spring_arm)
     camera = Camera3D.new()
-    camera.position = Vector3(0,0,6.2)
+    camera.position = Vector3.ZERO
     camera.fov = 72.0
     spring_arm.add_child(camera)
     camera.current = true
