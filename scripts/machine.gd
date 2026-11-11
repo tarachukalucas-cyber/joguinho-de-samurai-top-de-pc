@@ -4,12 +4,15 @@ var origin := Vector3.ZERO
 var phase := 0.0
 var wander_radius := 3.5
 var speed := 0.55
+var health := 100
+var flash_time := 0.0
 var legs: Array[Node3D] = []
 var core_light: OmniLight3D
 
 func _ready() -> void:
     origin = position
     phase = randf()*TAU
+    add_to_group("machines")
     _build_beast()
 
 func _mat(c: Color, metal := 0.7, rough := 0.32, emission := false) -> StandardMaterial3D:
@@ -106,6 +109,7 @@ func _build_beast() -> void:
 
 func _process(delta: float) -> void:
     phase += delta*speed
+    flash_time = maxf(0.0,flash_time-delta)
     var target := origin+Vector3(cos(phase)*wander_radius,0,sin(phase)*wander_radius)
     var movement := target-position
     position = target
@@ -115,3 +119,9 @@ func _process(delta: float) -> void:
         legs[i].rotation.x = sin(phase*2.2+float(i%2)*PI)*0.16
     if is_instance_valid(core_light):
         core_light.light_energy = 0.65+sin(phase*3.0)*0.18
+
+func receive_hit(damage: int) -> void:
+    health -= damage
+    flash_time = 0.16
+    if health <= 0:
+        queue_free()
