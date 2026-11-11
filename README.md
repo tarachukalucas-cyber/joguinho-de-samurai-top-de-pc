@@ -1,28 +1,30 @@
-# Caminho do Espadachim — Godot 4.7
+# Caminhos do Vale — Godot 4.7
 
-Protótipo original de ação samurai em low-poly, feito com formas 3D geradas por código. Inspirado no gênero de ação e aventura com espadas; não utiliza conteúdo extraído de Sekiro.
+Jogo original de exploração 3D em low-poly, com câmera em terceira pessoa. A proposta agora é explorar uma região ampla, encontrar locais antigos e descobrir a história de uma civilização desaparecida. É inspirado no gênero de aventura e exploração em mundo aberto, sem copiar personagens, mapas, máquinas ou história de Horizon.
 
-## Como executar
-1. Clique em **Code > Download ZIP** ou clone este repositório.
-2. Extraia os arquivos.
+## Como abrir
+1. No GitHub, clique em **Code > Download ZIP**.
+2. Extraia o ZIP em uma pasta.
 3. Abra o Godot 4.7 e importe o arquivo `project.godot`.
-4. Pressione F6 ou F5 para executar.
+4. Execute com F6 ou F5.
 
 ## Controles
 - WASD: movimentar
-- Mouse: câmera
-- Clique esquerdo: golpe de espada
-- Q: aparar
-- Espaço: esquivar
-- E: conversar com o monge
-- Esc: liberar o cursor; botão direito captura novamente
+- Shift: correr
+- Espaço: pular
+- Mouse: controlar a câmera
+- F: observar e registrar um marco antigo próximo
+- E: conversar com o guia
+- Esc: liberar o mouse; botão direito captura novamente
 
-## Conteúdo do protótipo
-- Vale 3D low-poly com trilha, árvores, torii, casa de chá e lanternas.
-- Samurai jogável com câmera em terceira pessoa.
-- Três inimigos que perseguem e atacam o jogador.
-- Ataque, esquiva e aparo temporizado.
-- NPC com diálogo e objetivo inicial.
-- HUD de vida, postura e inimigos restantes.
+## O que já existe nesta versão
+- Região 3D low-poly ampla, com bosque, colinas e caminhos.
+- Quatro áreas de interesse: Bosque das Lanternas, Ruínas do Sol, Lago Espelhado e Torre do Vento.
+- Cristais luminosos que indicam pontos de exploração.
+- Personagem em terceira pessoa, corrida e salto.
+- Guia com diálogo e objetivo de exploração.
+- HUD com progresso dos locais descobertos.
+- Cenário e modelos simples gerados por código, sem baixar pacotes de assets.
 
-É uma base inicial jogável e expansível, não uma recriação completa do jogo comercial.
+## Estado do projeto
+Esta é uma primeira versão de exploração. Ainda não possui a escala, animações, criaturas mecânicas complexas ou sistemas de escalada de um jogo comercial. O projeto foi atualizado no GitHub, mas não foi executado na engine nesta sessão; portanto, ainda precisa de teste no Godot 4.7.
