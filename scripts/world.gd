@@ -113,9 +113,24 @@ func _terrain() -> void:
             var c := a+resolution+1
             var d := c+1
             indices.append_array(PackedInt32Array([a,c,b,b,c,d]))
+    var normals := PackedVector3Array()
+    normals.resize(verts.size())
+    for i in range(normals.size()):
+        normals[i] = Vector3.ZERO
+    for i in range(0,indices.size(),3):
+        var ia: int = indices[i]
+        var ib: int = indices[i+1]
+        var ic: int = indices[i+2]
+        var normal := (verts[ib]-verts[ia]).cross(verts[ic]-verts[ia]).normalized()
+        normals[ia] += normal
+        normals[ib] += normal
+        normals[ic] += normal
+    for i in range(normals.size()):
+        normals[i] = normals[i].normalized()
     var arrays := []
     arrays.resize(Mesh.ARRAY_MAX)
     arrays[Mesh.ARRAY_VERTEX] = verts
+    arrays[Mesh.ARRAY_NORMAL] = normals
     arrays[Mesh.ARRAY_INDEX] = indices
     var terrain_mesh := ArrayMesh.new()
     terrain_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES,arrays)
