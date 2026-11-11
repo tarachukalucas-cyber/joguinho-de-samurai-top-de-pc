@@ -165,6 +165,7 @@ func _physics_process(delta: float) -> void:
     if Input.is_action_just_pressed("attack") and cooldown <= 0.0:
         attack_time = 0.34
         cooldown = 0.62
+        _strike_machines()
     if attack_time > 0.0:
         right_arm.rotation.x = -1.35*sin((0.34-attack_time)/0.34*PI)
     else:
@@ -172,3 +173,14 @@ func _physics_process(delta: float) -> void:
     if is_instance_valid(cape):
         cape.rotation.x = 7.0+sin(anim_time*5.0)*5.0+input_dir.length()*8.0
     move_and_slide()
+
+func _strike_machines() -> void:
+    var forward := -global_transform.basis.z
+    for target in get_tree().get_nodes_in_group("machines"):
+        if not is_instance_valid(target):
+            continue
+        var offset: Vector3 = target.global_position-global_position
+        var distance := offset.length()
+        if distance <= 3.2 and distance > 0.01 and offset.normalized().dot(forward) > 0.05:
+            if target.has_method("receive_hit"):
+                target.receive_hit(35)
