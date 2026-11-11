@@ -1,31 +1,30 @@
 # Caminhos do Vale — Godot 4.7
 
-Aventura original de exploração em terceira pessoa, com direção visual 3D mais realista. O protagonista é um samurai viajante em um mundo de natureza, ruínas antigas e máquinas selvagens. É uma obra original inspirada no gênero de aventura de mundo aberto; não reproduz assets, personagens, cenas ou mapas de Horizon.
+Protótipo original de aventura em terceira pessoa. A nova direção visual foi refeita a partir do painel de conceito criado nesta conversa: samurai de armadura escura e detalhes vermelhos, katana, vale japonês com cerejeiras, santuário, vila, lago enevoado, montanhas e criaturas mecânicas.
 
-## Abrir
-1. Clique em **Code > Download ZIP** e extraia.
-2. Abra o Godot 4.7.
-3. Importe `project.godot` e execute com F6/F5.
-4. O projeto usa Forward+ no PC para habilitar efeitos visuais avançados.
+## Abrir no PC
+1. Baixe o ZIP pelo botão **Code > Download ZIP**.
+2. Extraia a pasta.
+3. Abra o Godot 4.7, importe `project.godot` e execute com F6/F5.
 
 ## Controles
-- WASD: mover em relação à câmera
-- Mouse: câmera livre orbital em terceira pessoa
+- WASD: mover
+- Mouse: câmera livre em terceira pessoa
 - Shift: correr
 - Espaço: pular
-- F: registrar um marco antigo próximo
+- J: golpe de katana
 - E: conversar com o guia
-- Esc: liberar o cursor; clique direito captura novamente
+- F: descobrir um marco
+- Esc: liberar o cursor; botão direito captura novamente
 
-## Conteúdo implementado nesta etapa
-- Samurai viajante com armadura em camadas, capacete e katana.
-- Câmera livre de terceira pessoa com SpringArm e colisão.
-- Movimento relativo à câmera, corrida e salto.
-- Vale amplo com bosque, colinas, lago, ruínas e torre.
-- Criaturas mecânicas originais que patrulham áreas do mapa.
-- Quatro marcos de exploração e diálogos com guia.
-- Sequência inicial cinematográfica com câmera panorâmica e título.
-- Iluminação direcional, sombras, neblina, ambient occlusion, iluminação indireta, glow e tonemapping.
+## Conteúdo desta reconstrução
+- Protagonista samurai com hakama, placas de armadura yoroi, ombreiras, kabuto, faixa vermelha, bainha e katana.
+- Câmera orbital de terceira pessoa com SpringArm e colisão.
+- Vale com terreno em relevo, cadeia de montanhas, floresta, cerejeiras, flores, estrada de pedra, vila japonesa, torii, santuário, forja, lago e torre.
+- Criaturas mecânicas com corpo blindado, pernas articuladas, sensores luminosos, núcleo de energia e patrulha.
+- Golpe de katana com detecção de alcance e dano às criaturas mecânicas.
+- Quatro locais de exploração, guia e HUD em português.
+- Iluminação direcional, sombras, céu procedural, névoa e glow.
 
-## Limitações
-Esta é uma base de protótipo. Os modelos são gerados por formas procedurais e ainda não equivalem a modelos realistas de produção AAA. Não há animações capturadas, cutscenes narrativas completas, mundo da escala de um jogo comercial, máquinas complexas ou dublagem. A atualização ainda precisa ser aberta e testada no Godot 4.7; não foi possível validar a execução na engine nesta sessão.
+## Importante
+O painel de conceito é uma referência visual, não um conjunto de modelos 3D exportáveis. Os personagens e cenários desta versão são construídos proceduralmente dentro do Godot; por isso, ainda são modelos de protótipo e não assets realistas de produção AAA. O projeto foi atualizado no GitHub, mas precisa ser aberto e testado no Godot 4.7 para confirmar execução, desempenho e eventuais ajustes específicos da sua máquina.
