@@ -1,7 +1,7 @@
 config_version=5
 
 [application]
-config/name="Caminho do Espadachim"
+config/name="Caminhos do Vale"
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 
@@ -12,4 +12,4 @@ window/size/viewport_height=720
 [rendering]
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-renderer/environment/defaults/default_clear_color=Color(0.08, 0.11, 0.12, 1)
+renderer/environment/defaults/default_clear_color=Color(0.16, 0.22, 0.24, 1)
