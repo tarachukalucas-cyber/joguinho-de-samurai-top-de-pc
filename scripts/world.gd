@@ -1,6 +1,7 @@
 extends Node3D
 
 const PlayerScript = preload("res://scripts/player.gd")
+const MachineScript = preload("res://scripts/machine.gd")
 var player: CharacterBody3D
 var hud: Label
 var message: Label
@@ -104,6 +105,9 @@ func _build_world() -> void:
     # Acampamento inicial
     add_box(self,Vector3(0,0.8,8),Vector3(4,1.6,3),Color(0.42,0.29,0.17),"Abrigo")
     _campfire(Vector3(4,0,9))
+    _spawn_machine(Vector3(-18,0,-12))
+    _spawn_machine(Vector3(18,0,20))
+    _spawn_machine(Vector3(48,0,-8))
 
 func _tree(p: Vector3) -> void:
     var trunk := CylinderMesh.new()
@@ -172,6 +176,12 @@ func _build_tower(p: Vector3) -> void:
     for x in [-2.2,2.2]:
         add_box(self,p+Vector3(x,8,0),Vector3(0.5,3,0.5),Color(0.38,0.30,0.20),"Pilar da torre")
     _marker(p+Vector3(0,9,0),Color(0.80,0.55,0.95))
+
+func _spawn_machine(p: Vector3) -> void:
+    var creature := Node3D.new()
+    creature.set_script(MachineScript)
+    creature.position = p
+    add_child(creature)
 
 func _spawn_player() -> void:
     player = CharacterBody3D.new()
