@@ -29,7 +29,10 @@ Projeto original de aventura em terceira pessoa, com atmosfera cinematográfica 
 - Vila japonesa, torii, santuário, forja, lago e torre.
 - Criaturas mecânicas patrulhando diferentes regiões.
 - Quatro marcos de exploração, guia e HUD em português.
-- Iluminação direcional, céu procedural, névoa e brilho.
+- Iluminação direcional com ajuste cinematográfico de contraste/saturação, céu procedural, névoa e brilho.
+- Detalhes adicionais de cenário: capim em pequenos grupos, pedras espalhadas, lanternas de caminho e estandartes junto ao santuário.
+- Armadura do protagonista com placas sobrepostas, acabamentos metálicos, peças de ombro/antebraço e detalhes nas costas.
+- Criatura mecânica com sensores, placas laterais, reforços de carcaça e pontos de energia luminosos.
 - Shader de terreno com variação de grama, musgo e rocha; água com ondulação por shader.
 
 ## Estado desta versão
