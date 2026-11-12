@@ -64,54 +64,8 @@ func _build_samurai() -> void:
     collider.shape = capsule
     collider.position.y = 0.98
     add_child(collider)
-    var model := Node3D.new()
-    model.name = "SamuraiModel"
-    add_child(model)
-    # Camadas de armadura yoroi, hakama e placas sode
-    _box(model,Vector3(0,0.72,0),Vector3(0.88,0.82,0.60),Color(0.10,0.11,0.17))
-    _box(model,Vector3(0,1.23,0),Vector3(0.78,0.68,0.50),Color(0.12,0.16,0.23),Vector3.ZERO,0.28)
-    _box(model,Vector3(0,1.46,0.02),Vector3(0.90,0.17,0.56),Color(0.50,0.09,0.08),Vector3.ZERO,0.25)
-    for i in range(5):
-        _box(model,Vector3(0,1.04+i*0.09,-0.26),Vector3(0.62,0.035,0.035),Color(0.75,0.18,0.12))
-    for side in [-1.0,1.0]:
-        _box(model,Vector3(side*0.53,1.48,0),Vector3(0.42,0.22,0.62),Color(0.18,0.22,0.29),Vector3(0,0,side*8),0.45)
-        for j in range(3):
-            _box(model,Vector3(side*0.54,1.34-j*0.12,-0.03),Vector3(0.36,0.075,0.48),Color(0.28,0.30,0.34),Vector3(0,0,side*7),0.38)
-        _box(model,Vector3(side*0.23,0.28,0),Vector3(0.30,0.62,0.34),Color(0.12,0.14,0.19))
-        _box(model,Vector3(side*0.23,0.07,-0.06),Vector3(0.36,0.15,0.48),Color(0.07,0.08,0.10))
-    _sphere(model,Vector3(0,1.86,0),0.24,Color(0.64,0.43,0.31))
-    _box(model,Vector3(0,1.70,-0.02),Vector3(0.48,0.22,0.42),Color(0.08,0.10,0.15))
-    var helmet := SphereMesh.new()
-    helmet.radius = 0.34
-    helmet.height = 0.42
-    var helm := MeshInstance3D.new()
-    helm.mesh = helmet
-    helm.position = Vector3(0,2.08,0)
-    helm.material_override = _mat(Color(0.09,0.12,0.19),0.62,0.3)
-    model.add_child(helm)
-    _box(model,Vector3(0,1.99,-0.28),Vector3(0.68,0.10,0.16),Color(0.65,0.15,0.10),Vector3(-8,0,0),0.5)
-    _sphere(model,Vector3(0,2.27,-0.02),0.075,Color(0.88,0.65,0.20),0.8)
-    for side in [-1.0,1.0]:
-        var horn := PrismMesh.new()
-        horn.size = Vector3(0.14,0.55,0.12)
-        var h := MeshInstance3D.new()
-        h.mesh = horn
-        h.position = Vector3(side*0.24,2.24,0)
-        h.rotation_degrees.z = side*-18
-        h.material_override = _mat(Color(0.78,0.58,0.21),0.75,0.3)
-        model.add_child(h)
-    cape = _box(model,Vector3(0,1.02,0.36),Vector3(0.72,1.20,0.10),Color(0.42,0.045,0.045),Vector3(7,0,0))
-    _box(model,Vector3(0,1.50,0.31),Vector3(0.68,0.12,0.12),Color(0.82,0.59,0.20),Vector3.ZERO,0.65)
-    for side in [-1.0,1.0]:
-        var arm := Node3D.new()
-        arm.position = Vector3(side*0.52,1.48,0)
-        model.add_child(arm)
-        _box(arm,Vector3(0,-0.25,0),Vector3(0.24,0.52,0.26),Color(0.14,0.16,0.22))
-        _box(arm,Vector3(0,-0.48,-0.02),Vector3(0.30,0.18,0.34),Color(0.38,0.12,0.10),Vector3.ZERO,0.3)
-        _sphere(arm,Vector3(0,-0.58,0),0.12,Color(0.57,0.36,0.26))
-        if side > 0:
-            right_arm = arm
-    # Protagonista desarmado; o gesto representa uma habilidade de energia.
+
+    # O modelo visual agora é uma cena 3D separada, com malhas e materiais próprios.
     pivot = Node3D.new()
     pivot.position = Vector3(0,1.55,0)
     add_child(pivot)
@@ -162,12 +116,7 @@ func _physics_process(delta: float) -> void:
         attack_time = 0.34
         cooldown = 0.62
         _pulse_machines()
-    if attack_time > 0.0:
-        right_arm.rotation.x = -1.35*sin((0.34-attack_time)/0.34*PI)
-    else:
-        right_arm.rotation.x = lerpf(right_arm.rotation.x,0.0,delta*9.0)
-    if is_instance_valid(cape):
-        cape.rotation.x = 7.0+sin(anim_time*5.0)*5.0+input_dir.length()*8.0
+    # O modelo usa animação visual independente; o pulso não depende de uma arma.
     move_and_slide()
 
 func _pulse_machines() -> void:
