@@ -136,7 +136,9 @@ func _terrain() -> void:
     terrain_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES,arrays)
     var surface := MeshInstance3D.new()
     surface.mesh = terrain_mesh
-    surface.material_override = mat(Color(0.25,0.34,0.22),1.0)
+    var terrain_material := ShaderMaterial.new()
+    terrain_material.shader = load("res://shaders/terrain.gdshader")
+    surface.material_override = terrain_material
     add_child(surface)
     var body := StaticBody3D.new()
     var collision := CollisionShape3D.new()
@@ -281,7 +283,9 @@ func _lake(p: Vector3) -> void:
     water.bottom_radius = 15
     water.height = 0.18
     var w := mesh_piece(self,water,p+Vector3(0,0.16,0),Color(0.10,0.37,0.48))
-    w.material_override = mat(Color(0.12,0.42,0.55),0.16,0.18)
+    var water_material := ShaderMaterial.new()
+    water_material.shader = load("res://shaders/water.gdshader")
+    w.material_override = water_material
     for i in range(16):
         var rock := SphereMesh.new()
         rock.radius = randf_range(1.0,2.4)
