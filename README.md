@@ -1,32 +1,40 @@
 # Caminhos do Vale — Godot 4.7
 
-Protótipo original de aventura em terceira pessoa. A nova direção visual foi refeita a partir do painel de conceito criado nesta conversa: samurai de armadura escura e detalhes vermelhos, katana, vale japonês com cerejeiras, santuário, vila, lago enevoado, montanhas e criaturas mecânicas.
+Projeto original de aventura em terceira pessoa, com atmosfera cinematográfica inspirada em jogos de exploração de mundo aberto e identidade visual japonesa.
 
 ## Abrir no PC
-1. Baixe o ZIP pelo botão **Code > Download ZIP**.
+1. No GitHub, use **Code > Download ZIP**.
 2. Extraia a pasta.
 3. Abra o Godot 4.7, importe `project.godot` e execute com F6/F5.
 
 ## Controles
 - WASD: mover
-- Mouse: câmera livre em terceira pessoa
+- Mouse: câmera em terceira pessoa
 - Shift: correr
 - Espaço: pular
-- J: golpe de katana
+- J: pulso de energia (habilidade fantástica)
 - E: conversar com o guia
 - F: descobrir um marco
 - Esc: liberar o cursor; botão direito captura novamente
 
-## Conteúdo desta reconstrução
-- Protagonista samurai com hakama, placas de armadura yoroi, ombreiras, kabuto, faixa vermelha, bainha e katana.
-- Câmera orbital de terceira pessoa com SpringArm e colisão.
-- Vale com terreno em relevo, cadeia de montanhas, floresta, cerejeiras, flores, estrada de pedra, vila japonesa, torii, santuário, forja, lago e torre.
-- Criaturas mecânicas com corpo blindado, pernas articuladas, sensores luminosos, núcleo de energia e patrulha.
-- Golpe de katana com detecção de alcance e dano às criaturas mecânicas.
-- Quatro locais de exploração, guia e HUD em português.
-- Iluminação direcional, sombras, céu procedural, névoa e glow.
-- Shader procedural de terreno com variação de grama, musgo e rocha conforme o relevo.
-- Água do lago com ondulação animada por shader e reflexo especular.
+## Estrutura de cenas
+- `scenes/main.tscn`: raiz do jogo e organização dos sistemas.
+- `scenes/samurai.tscn`: personagem controlável, colisão e câmera.
+- `scenes/samurai_visual.tscn`: modelo visual 3D separado, com peças de armadura, tecido, materiais metálicos e detalhes luminosos.
+- `scenes/machine_beast.tscn`: criatura mecânica com comportamento de patrulha.
+- `scenes/machine_visual.tscn`: modelo visual 3D da criatura, com carcaça, pernas articuladas, sensores e núcleo luminoso.
 
-## Importante
-O painel de conceito é uma referência visual, não um conjunto de modelos 3D exportáveis. Os personagens, árvores e estruturas desta versão são construídos proceduralmente dentro do Godot; os shaders melhoram a leitura do terreno e da água, mas os modelos ainda são de protótipo e não assets realistas de produção AAA. O projeto foi atualizado no GitHub, mas precisa ser aberto e testado no Godot 4.7 para confirmar execução, desempenho e eventuais ajustes específicos da sua máquina.
+## Mundo
+- Vale com relevo, cadeia de montanhas, floresta e cerejeiras.
+- Vila japonesa, torii, santuário, forja, lago e torre.
+- Criaturas mecânicas patrulhando diferentes regiões.
+- Quatro marcos de exploração, guia e HUD em português.
+- Iluminação direcional, céu procedural, névoa e brilho.
+- Shader de terreno com variação de grama, musgo e rocha; água com ondulação por shader.
+
+## Estado desta versão
+Os modelos do protagonista e da criatura agora são cenas 3D separadas, com malhas e materiais definidos nos próprios arquivos `.tscn`, em vez de serem montados inteiramente pelos scripts de controle. O terreno, vegetação, construções e parte dos efeitos do ambiente ainda são gerados pelo script do mundo.
+
+A direção visual busca um resultado cinematográfico e detalhado, mas esta versão ainda é um protótipo: não equivale à qualidade técnica de um jogo AAA. Não foram importados pacotes externos nesta atualização; os modelos de personagem e criatura são originais e construídos com recursos nativos do Godot.
+
+**Validação pendente:** abrir e executar no Godot 4.7 para conferir importação, renderização, controles e desempenho no PC.
