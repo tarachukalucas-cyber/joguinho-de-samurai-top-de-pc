@@ -20,6 +20,7 @@ func _ready() -> void:
     _terrain()
     _mountain_range()
     _build_world()
+    _cinematic_details()
     _spawn_player()
     _spawn_guide()
     _build_hud()
@@ -74,11 +75,15 @@ func _environment() -> void:
     sky.sky_material = sky_mat
     env.sky = sky
     env.ambient_light_source = Environment.AMBIENT_SOURCE_SKY
-    env.ambient_light_energy = 0.72
+    env.ambient_light_energy = 0.82
     env.tonemap_mode = Environment.TONE_MAPPER_FILMIC
     env.tonemap_exposure = 1.12
     env.glow_enabled = true
-    env.glow_intensity = 0.35
+    env.glow_intensity = 0.42
+    env.glow_bloom = 0.12
+    env.adjustment_enabled = true
+    env.adjustment_contrast = 1.08
+    env.adjustment_saturation = 1.12
     env.fog_enabled = true
     env.fog_light_color = Color(0.57,0.62,0.65)
     env.fog_density = 0.006
@@ -86,7 +91,9 @@ func _environment() -> void:
     get_parent().get_node("Environment").add_child(we)
     var sun := DirectionalLight3D.new()
     sun.rotation_degrees = Vector3(-43,-32,0)
-    sun.light_energy = 1.35
+    sun.light_energy = 1.55
+    sun.light_color = Color(1.0,0.86,0.72
+    )
     sun.shadow_enabled = true
     sun.directional_shadow_max_distance = 160.0
     get_parent().get_node("Environment").add_child(sun)
@@ -232,6 +239,54 @@ func _tree(p: Vector3, scale_value: float, cherry: bool) -> void:
             crown.height = 2.65*scale_value
             var crown_node := mesh_piece(self,crown,p+Vector3(0,height,0),Color(0.075+float(layer)*0.018,0.22+float(layer)*0.025,0.13))
             crown_node.rotation_degrees.y = randf_range(0.0,360.0)
+
+
+func _cinematic_details() -> void:
+    # Pedras, capim e pequenos pontos de luz quebram as superficies vazias do vale.
+    for i in range(92):
+        var x := randf_range(-92.0,92.0)
+        var z := randf_range(-88.0,88.0)
+        if Vector2(x,z).length() < 16.0:
+            continue
+        var stone := SphereMesh.new()
+        stone.radius = randf_range(0.22,0.58)
+        stone.height = randf_range(0.28,0.72)
+        var rock := mesh_piece(self,stone,Vector3(x,_height(x,z)+0.12,z),Color(0.25,0.29,0.29),Vector3(randf_range(0.8,1.7),0.55,randf_range(0.8,1.5)),0.12)
+        rock.rotation_degrees.y = randf_range(0.0,180.0)
+    for i in range(68):
+        var x := randf_range(-88.0,88.0)
+        var z := randf_range(-84.0,84.0)
+        if Vector2(x,z).length() < 20.0:
+            continue
+        var base := Vector3(x,_height(x,z),z)
+        for blade in range(3):
+            var grass := PrismMesh.new()
+            grass.size = Vector3(0.10,randf_range(0.45,0.9),0.08)
+            var g := mesh_piece(self,grass,base+Vector3(randf_range(-0.18,0.18),0.35,randf_range(-0.18,0.18)),Color(0.16,0.29+randf()*0.12,0.16))
+            g.rotation_degrees = Vector3(randf_range(-12,12),randf_range(0,360),randf_range(-12,12))
+    # Lanternas de pedra conduzem o olhar pela trilha principal.
+    for i in range(9):
+        var z := 13.0-float(i)*7.0
+        var p := Vector3(3.4 if i%2==0 else -3.4,_height(3.4 if i%2==0 else -3.4,z),z)
+        box(self,p+Vector3(0,0.55,0),Vector3(0.62,1.1,0.62),Color(0.31,0.32,0.30))
+        box(self,p+Vector3(0,1.15,0),Vector3(0.78,0.12,0.78),Color(0.18,0.19,0.19))
+        var glow := OmniLight3D.new()
+        glow.position = p+Vector3(0,1.55,0)
+        glow.light_color = Color(1.0,0.58,0.28)
+        glow.light_energy = 0.48
+        glow.omni_range = 5.5
+        add_child(glow)
+        var orb := SphereMesh.new()
+        orb.radius = 0.13
+        mesh_piece(self,orb,p+Vector3(0,1.52,0),Color(1.0,0.62,0.30))
+    # Pequenos estandartes de tecido no acesso ao santuário.
+    for side in [-1.0,1.0]:
+        var pole := CylinderMesh.new()
+        pole.top_radius = 0.045
+        pole.bottom_radius = 0.07
+        pole.height = 4.2
+        mesh_piece(self,pole,Vector3(side*5.2,_height(side*5.2,-24)+2.1,-24),Color(0.24,0.17,0.12),Vector3.ONE,0.18)
+        box(self,Vector3(side*5.2,_height(side*5.2,-24)+3.15,-24),Vector3(1.05,1.55,0.08),Color(0.48,0.075,0.09),Vector3(0,0,side*5.0))
 
 func _flowers() -> void:
     for i in range(190):
