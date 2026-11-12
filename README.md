@@ -25,6 +25,8 @@ Protótipo original de aventura em terceira pessoa. A nova direção visual foi 
 - Golpe de katana com detecção de alcance e dano às criaturas mecânicas.
 - Quatro locais de exploração, guia e HUD em português.
 - Iluminação direcional, sombras, céu procedural, névoa e glow.
+- Shader procedural de terreno com variação de grama, musgo e rocha conforme o relevo.
+- Água do lago com ondulação animada por shader e reflexo especular.
 
 ## Importante
-O painel de conceito é uma referência visual, não um conjunto de modelos 3D exportáveis. Os personagens e cenários desta versão são construídos proceduralmente dentro do Godot; por isso, ainda são modelos de protótipo e não assets realistas de produção AAA. O projeto foi atualizado no GitHub, mas precisa ser aberto e testado no Godot 4.7 para confirmar execução, desempenho e eventuais ajustes específicos da sua máquina.
+O painel de conceito é uma referência visual, não um conjunto de modelos 3D exportáveis. Os personagens, árvores e estruturas desta versão são construídos proceduralmente dentro do Godot; os shaders melhoram a leitura do terreno e da água, mas os modelos ainda são de protótipo e não assets realistas de produção AAA. O projeto foi atualizado no GitHub, mas precisa ser aberto e testado no Godot 4.7 para confirmar execução, desempenho e eventuais ajustes específicos da sua máquina.
