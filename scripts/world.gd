@@ -1,7 +1,7 @@
 extends Node3D
 
-const PlayerScript = preload("res://scripts/player.gd")
-const MachineScript = preload("res://scripts/machine.gd")
+const SamuraiScene = preload("res://scenes/samurai.tscn")
+const MachineScene = preload("res://scenes/machine_beast.tscn")
 var player: CharacterBody3D
 var hud: Label
 var message: Label
@@ -83,13 +83,13 @@ func _environment() -> void:
     env.fog_light_color = Color(0.57,0.62,0.65)
     env.fog_density = 0.006
     we.environment = env
-    add_child(we)
+    get_parent().get_node("Environment").add_child(we)
     var sun := DirectionalLight3D.new()
     sun.rotation_degrees = Vector3(-43,-32,0)
     sun.light_energy = 1.35
     sun.shadow_enabled = true
     sun.directional_shadow_max_distance = 160.0
-    add_child(sun)
+    get_parent().get_node("Environment").add_child(sun)
 
 func _height(x: float, z: float) -> float:
     var edge := maxf(absf(x),absf(z))
@@ -139,12 +139,12 @@ func _terrain() -> void:
     var terrain_material := ShaderMaterial.new()
     terrain_material.shader = load("res://shaders/terrain.gdshader")
     surface.material_override = terrain_material
-    add_child(surface)
+    get_parent().get_node("Terrain").add_child(surface)
     var body := StaticBody3D.new()
     var collision := CollisionShape3D.new()
     collision.shape = terrain_mesh.create_trimesh_shape()
     body.add_child(collision)
-    add_child(body)
+    get_parent().get_node("Terrain").add_child(body)
 
 func _mountain_range() -> void:
     for i in range(17):
@@ -356,17 +356,14 @@ func _marker(p: Vector3, color: Color) -> void:
     add_child(light)
 
 func _spawn_machine(p: Vector3) -> void:
-    var machine := Node3D.new()
-    machine.set_script(MachineScript)
+    var machine := MachineScene.instantiate()
     machine.position = p
-    add_child(machine)
+    get_parent().get_node("Machines").add_child(machine)
 
 func _spawn_player() -> void:
-    player = CharacterBody3D.new()
-    player.name = "Samurai"
-    player.set_script(PlayerScript)
+    player = SamuraiScene.instantiate() as CharacterBody3D
     player.position = Vector3(0,_height(0,26)+0.2,26)
-    add_child(player)
+    get_parent().get_node("Characters").add_child(player)
 
 func _spawn_guide() -> void:
     var npc := Node3D.new()
@@ -383,7 +380,7 @@ func _spawn_guide() -> void:
 
 func _build_hud() -> void:
     var layer := CanvasLayer.new()
-    add_child(layer)
+    get_parent().get_node("HUD").add_child(layer)
     var root := Control.new()
     root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
     layer.add_child(root)
@@ -401,7 +398,7 @@ func _build_hud() -> void:
     message.add_theme_font_size_override("font_size",17)
     panel.add_child(message)
     var controls := Label.new()
-    controls.text = "WASD mover  |  Shift correr  |  Espaço pular  |  Mouse câmera  |  J atacar  |  F descobrir  |  E falar"
+    controls.text = "WASD mover  |  Shift correr  |  Espaço pular  |  Mouse câmera  |  J pulso  |  F descobrir  |  E falar"
     controls.position = Vector2(28,850)
     controls.add_theme_font_size_override("font_size",15)
     controls.add_theme_color_override("font_color",Color(0.95,0.91,0.80))
