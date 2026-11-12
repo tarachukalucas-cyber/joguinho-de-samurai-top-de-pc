@@ -17,7 +17,7 @@ func _ready() -> void:
     Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _input_setup() -> void:
-    var keys := {"move_forward":KEY_W,"move_back":KEY_S,"move_left":KEY_A,"move_right":KEY_D,"sprint":KEY_SHIFT,"jump":KEY_SPACE,"attack":KEY_J,"interact":KEY_E,"explore":KEY_F}
+    var keys := {"move_forward":KEY_W,"move_back":KEY_S,"move_left":KEY_A,"move_right":KEY_D,"sprint":KEY_SHIFT,"jump":KEY_SPACE,"pulse":KEY_J,"interact":KEY_E,"explore":KEY_F}
     for action in keys:
         if not InputMap.has_action(action):
             InputMap.add_action(action)
@@ -111,11 +111,7 @@ func _build_samurai() -> void:
         _sphere(arm,Vector3(0,-0.58,0),0.12,Color(0.57,0.36,0.26))
         if side > 0:
             right_arm = arm
-    # Bainha nas costas e katana na mão
-    _box(model,Vector3(-0.35,1.20,0.36),Vector3(0.12,0.12,1.35),Color(0.06,0.07,0.10),Vector3(-18,0,-18),0.35)
-    _box(right_arm,Vector3(0,-0.56,-0.24),Vector3(0.09,0.09,0.38),Color(0.12,0.07,0.05))
-    _box(right_arm,Vector3(0,-0.57,-0.48),Vector3(0.22,0.055,0.07),Color(0.82,0.60,0.22),Vector3.ZERO,0.8)
-    _box(right_arm,Vector3(0,-0.57,-1.02),Vector3(0.075,0.045,1.08),Color(0.78,0.85,0.90),Vector3(-3,0,0),0.9)
+    # Protagonista desarmado; o gesto representa uma habilidade de energia.
     pivot = Node3D.new()
     pivot.position = Vector3(0,1.55,0)
     add_child(pivot)
@@ -162,10 +158,10 @@ func _physics_process(delta: float) -> void:
         velocity.y = 6.5
     else:
         velocity.y = 0.0
-    if Input.is_action_just_pressed("attack") and cooldown <= 0.0:
+    if Input.is_action_just_pressed("pulse") and cooldown <= 0.0:
         attack_time = 0.34
         cooldown = 0.62
-        _strike_machines()
+        _pulse_machines()
     if attack_time > 0.0:
         right_arm.rotation.x = -1.35*sin((0.34-attack_time)/0.34*PI)
     else:
@@ -174,7 +170,7 @@ func _physics_process(delta: float) -> void:
         cape.rotation.x = 7.0+sin(anim_time*5.0)*5.0+input_dir.length()*8.0
     move_and_slide()
 
-func _strike_machines() -> void:
+func _pulse_machines() -> void:
     var forward := -global_transform.basis.z
     for target in get_tree().get_nodes_in_group("machines"):
         if not is_instance_valid(target):
