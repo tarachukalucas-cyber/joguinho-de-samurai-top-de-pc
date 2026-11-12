@@ -65,7 +65,7 @@ func _build_samurai() -> void:
     collider.position.y = 0.98
     add_child(collider)
 
-    # O modelo visual agora é uma cena 3D separada, com malhas e materiais próprios.
+    # A aparência do personagem está na cena samurai_visual.tscn.
     pivot = Node3D.new()
     pivot.position = Vector3(0,1.55,0)
     add_child(pivot)
