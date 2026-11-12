@@ -198,17 +198,40 @@ func _build_world() -> void:
     _flowers()
 
 func _tree(p: Vector3, scale_value: float, cherry: bool) -> void:
+    # Tronco irregular e galhos visíveis para evitar a silhueta de esfera sobre um poste.
     var trunk := CylinderMesh.new()
-    trunk.top_radius = 0.18*scale_value
+    trunk.top_radius = 0.13*scale_value
     trunk.bottom_radius = 0.34*scale_value
-    trunk.height = 4.6*scale_value
-    mesh_piece(self,trunk,p+Vector3(0,2.3*scale_value,0),Color(0.25,0.15,0.10),Vector3.ONE)
-    for j in range(3):
-        var crown := SphereMesh.new()
-        crown.radius = 1.65*scale_value*(1.0-float(j)*0.12)
-        crown.height = 2.2*scale_value
-        var color := Color(0.48,0.20,0.28) if cherry else [Color(0.10,0.26,0.18),Color(0.13,0.34,0.22),Color(0.18,0.39,0.25)][j]
-        mesh_piece(self,crown,p+Vector3(randf_range(-0.5,0.5),3.8*scale_value+j*0.75*scale_value,randf_range(-0.4,0.4)),color)
+    trunk.height = 5.2*scale_value
+    var trunk_node := mesh_piece(self,trunk,p+Vector3(0,2.6*scale_value,0),Color(0.22,0.12,0.075))
+    trunk_node.rotation_degrees.z = randf_range(-4.0,4.0)
+
+    for branch_index in range(4):
+        var side := -1.0 if branch_index % 2 == 0 else 1.0
+        var branch := CylinderMesh.new()
+        branch.top_radius = 0.055*scale_value
+        branch.bottom_radius = 0.13*scale_value
+        branch.height = 2.15*scale_value
+        var branch_node := mesh_piece(self,branch,p+Vector3(side*0.72*scale_value,(2.5+float(branch_index)*0.48)*scale_value,0),Color(0.25,0.14,0.085))
+        branch_node.rotation_degrees = Vector3(0,0,side*-42.0)
+
+    for layer in range(4):
+        var height := (3.1+float(layer)*0.64)*scale_value
+        if cherry:
+            for cluster in range(5):
+                var angle := TAU*float(cluster)/5.0+float(layer)*0.31
+                var blossom := SphereMesh.new()
+                blossom.radius = 1.12*scale_value
+                blossom.height = 1.55*scale_value
+                var blossom_color := Color(0.66,0.27,0.39) if layer % 2 == 0 else Color(0.83,0.43,0.52)
+                mesh_piece(self,blossom,p+Vector3(cos(angle)*0.82*scale_value,height,sin(angle)*0.82*scale_value),blossom_color,Vector3(1.0,0.78,1.0))
+        else:
+            var crown := ConeMesh.new()
+            crown.bottom_radius = (2.0-float(layer)*0.25)*scale_value
+            crown.top_radius = 0.12*scale_value
+            crown.height = 2.65*scale_value
+            var crown_node := mesh_piece(self,crown,p+Vector3(0,height,0),Color(0.075+float(layer)*0.018,0.22+float(layer)*0.025,0.13))
+            crown_node.rotation_degrees.y = randf_range(0.0,360.0)
 
 func _flowers() -> void:
     for i in range(190):
