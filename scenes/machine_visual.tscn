@@ -261,3 +261,60 @@ mesh = SubResource("Sphere")
 material_override = SubResource("Mat_glow")
 position = Vector3(0, 1.04, 1.54)
 scale = Vector3(0.14, 0.14, 0.14)
+
+[node name="SideCoreLeft" type="MeshInstance3D" parent="."]
+mesh = SubResource("Sphere")
+material_override = SubResource("Mat_glow")
+position = Vector3(-0.59, 1.18, 0.22)
+scale = Vector3(0.12, 0.12, 0.28)
+
+[node name="SideCoreRight" type="MeshInstance3D" parent="."]
+mesh = SubResource("Sphere")
+material_override = SubResource("Mat_glow")
+position = Vector3(0.59, 1.18, 0.22)
+scale = Vector3(0.12, 0.12, 0.28)
+
+[node name="ShoulderArmorL" type="MeshInstance3D" parent="."]
+mesh = SubResource("Box")
+material_override = SubResource("Mat_armor")
+position = Vector3(-0.48, 1.43, -0.52)
+scale = Vector3(0.32, 0.16, 0.46)
+rotation_degrees = Vector3(0, 0, -12)
+
+[node name="ShoulderArmorR" type="MeshInstance3D" parent="."]
+mesh = SubResource("Box")
+material_override = SubResource("Mat_armor")
+position = Vector3(0.48, 1.43, -0.52)
+scale = Vector3(0.32, 0.16, 0.46)
+rotation_degrees = Vector3(0, 0, 12)
+
+[node name="FrontSensor" type="MeshInstance3D" parent="."]
+mesh = SubResource("Sphere")
+material_override = SubResource("Mat_glow")
+position = Vector3(0, 1.57, -1.12)
+scale = Vector3(0.12, 0.12, 0.12)
+
+[node name="RearEngine" type="MeshInstance3D" parent="."]
+mesh = SubResource("Cylinder")
+material_override = SubResource("Mat_gold")
+position = Vector3(0, 1.52, 0.64)
+rotation_degrees = Vector3(90, 0, 0)
+scale = Vector3(1.2, 0.25, 1.2)
+
+[node name="BellyArmor" type="MeshInstance3D" parent="."]
+mesh = SubResource("Box")
+material_override = SubResource("Mat_armor")
+position = Vector3(0, 0.72, 0.02)
+scale = Vector3(0.82, 0.18, 1.12)
+
+[node name="SpineGlowA" type="MeshInstance3D" parent="."]
+mesh = SubResource("Sphere")
+material_override = SubResource("Mat_glow")
+position = Vector3(0, 1.58, 0.02)
+scale = Vector3(0.09, 0.09, 0.09)
+
+[node name="SpineGlowB" type="MeshInstance3D" parent="."]
+mesh = SubResource("Sphere")
+material_override = SubResource("Mat_glow")
+position = Vector3(0, 1.58, 0.44)
+scale = Vector3(0.09, 0.09, 0.09)
